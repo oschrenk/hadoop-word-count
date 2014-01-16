@@ -69,7 +69,7 @@
 					</descriptors>
 					<archive>
 						<manifest>
-							<mainClass>com.hadoop.example.WordCount</mainClass>
+							<mainClass>com.hadoop.examples.WordCount</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

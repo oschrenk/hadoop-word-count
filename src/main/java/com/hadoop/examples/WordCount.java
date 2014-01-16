@@ -1,4 +1,4 @@
-package com.hadoop.example;
+package com.hadoop.examples;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
@@ -13,7 +13,7 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
- * The famous MapReduce word count example for Hadoop.
+ * The famous MapReduce word count examples for Hadoop.
  */
 public class WordCount extends Configured implements Tool {
 
@@ -27,7 +27,7 @@ public class WordCount extends Configured implements Tool {
 
 		if (args.length != 2) {
 			System.err
-					.println("Usage: hadoop jar hadoop-example-1.0-SNAPSHOT-job.jar"
+					.println("Usage: hadoop jar hadoop-examples-1.0-SNAPSHOT-job.jar"
 							+ " [generic options] <in> <out>");
 			System.out.println();
 			ToolRunner.printGenericCommandUsage(System.err);

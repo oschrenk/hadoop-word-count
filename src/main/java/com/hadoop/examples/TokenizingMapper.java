@@ -1,4 +1,4 @@
-package com.hadoop.example;
+package com.hadoop.examples;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
