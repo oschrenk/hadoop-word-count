@@ -40,7 +40,6 @@ public class WordCount extends Configured implements Tool {
         job.setReducerClass(SumReducer.class);
 
         // IntSumReducer is provided
-		//job.setCombinerClass(IntSumReducer.class);
 		//job.setReducerClass(IntSumReducer.class);
 
 		job.setOutputKeyClass(Text.class);
