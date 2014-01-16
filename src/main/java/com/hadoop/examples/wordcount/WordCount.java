@@ -26,7 +26,7 @@ public class WordCount extends Configured implements Tool {
 
 		if (args.length != 2) {
 			System.err
-					.println("Usage: hadoop jar word-count-1.0-SNAPSHOT-job.jar"
+					.println("Usage: hadoop jar word-count.jar"
 							+ " [generic options] <in> <out>");
 			System.out.println();
 			ToolRunner.printGenericCommandUsage(System.err);
