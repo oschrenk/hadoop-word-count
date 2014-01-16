@@ -15,7 +15,7 @@ import java.io.IOException;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TokenizingMapperTest {
+public class MockitoTest {
 
     @Mock
     private Mapper<LongWritable, Text, Text, IntWritable>.Context context;
