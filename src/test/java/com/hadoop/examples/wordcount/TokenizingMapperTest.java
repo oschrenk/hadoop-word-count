@@ -1,10 +1,4 @@
-package com.hadoop.examples;
-
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-
-import java.io.IOException;
+package com.hadoop.examples.wordcount;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -16,13 +10,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.IOException;
+
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TokenizingMapperTest {
-    @Mock 
+
+    @Mock
     private Mapper<LongWritable, Text, Text, IntWritable>.Context context;
     private TokenizingMapper mapper;
-    
+
     @Before
     public void setUp() {
         mapper = new TokenizingMapper();
@@ -31,10 +29,10 @@ public class TokenizingMapperTest {
     @Test
     public void testMap() throws IOException, InterruptedException {
         mapper.map(new LongWritable(0), new Text("foo bar bar"), context);
-        
+
         verify(context, times(1)).write(new Text("foo"), new IntWritable(1));
         verify(context, times(2)).write(new Text("bar"), new IntWritable(1));
-        
+
         verifyNoMoreInteractions(context);
     }
 }
