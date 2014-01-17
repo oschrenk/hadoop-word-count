@@ -9,10 +9,13 @@ PROJECT=gutenberg
 PROJECT_INPUT=$(PROJECT)-input
 PROJECT_OUTPUT=$(PROJECT)-output
 
+fetch-data:
+	cd src/main/data && ./fetch-data.sh
+
 package:
 	mvn clean package
 
-run: package
+run:
 	hadoop jar target/*-job.jar $(PROJECT_INPUT) $(PROJECT_OUTPUT)
 
 delete-input:
@@ -45,30 +48,3 @@ open-jobtracker:
 
 open-tasktracker:
 	open http://localhost:50060/
-
-updates:
-	mvn versions:display-dependency-updates
-	mvn versions:display-plugin-updates
-
-build-source-jar:
-	wget -O $(HADOOP_FILE) http://apache.cs.uu.nl/dist/hadoop/common/hadoop-$(HADOOP_VERSION)/hadoop-$(HADOOP_VERSION).tar.gz
-	tar -xzvf $(HADOOP_FILE) -C /tmp
-	rm -f $(HADOOP_OUTPUT)
-	rm -f $(HADOOP_MANIFEST)
-
-	echo "Manifest-Version: 1.0" > $(HADOOP_MANIFEST)
-	echo "Bundle-ManifestVersion: 2" >> $(HADOOP_MANIFEST)
-	echo "Bundle-Name: Hadoop $(HADOOP_VERSION) sources" >> $(HADOOP_MANIFEST)
-	jar -cvfm $(HADOOP_OUTPUT) $(HADOOP_MANIFEST)
-	cd $(HADOOP_SRC)/core/ && jar -uvf $(HADOOP_OUTPUT) *
-	cd $(HADOOP_SRC)/hdfs/ && jar -uvf $(HADOOP_OUTPUT) *
-	cd $(HADOOP_SRC)/mapred/ && jar -uvf $(HADOOP_OUTPUT) *
-
-	mvn install:install-file \
-    -Dfile=$(HADOOP_OUTPUT) \
-    -DgroupId=org.apache.hadoop \
-    -DartifactId=hadoop-core \
-    -Dversion=$(HADOOP_VERSION) \
-    -Dpackaging=jar \
-    -DgeneratePom=false \
-    -Dclassifier=sources
