@@ -19,7 +19,8 @@ public class TokenizingMapper extends
 	protected void map(LongWritable offset, Text value, Context context)
 			throws IOException, InterruptedException {
 
-		StringTokenizer tokenizer = new StringTokenizer(value.toString());
+        // tokenize on whitespace
+		StringTokenizer tokenizer = new StringTokenizer(value.toString(), " \t\n\r\f");
 		while (tokenizer.hasMoreTokens()) {
 			Text word = new Text(tokenizer.nextToken());
 			context.write(word, ONE);
