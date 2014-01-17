@@ -13,7 +13,8 @@ import org.apache.hadoop.mapreduce.Mapper;
  */
 public class TokenizingMapper extends
 		Mapper<LongWritable, Text, Text, IntWritable> {
-	private static final IntWritable one = new IntWritable(1);
+
+	private static final IntWritable ONE = new IntWritable(1);
 
 	protected void map(LongWritable offset, Text value, Context context)
 			throws IOException, InterruptedException {
@@ -21,7 +22,7 @@ public class TokenizingMapper extends
 		StringTokenizer tokenizer = new StringTokenizer(value.toString());
 		while (tokenizer.hasMoreTokens()) {
 			Text word = new Text(tokenizer.nextToken());
-			context.write(word, one);
+			context.write(word, ONE);
 		}
 	}
 }
