@@ -63,11 +63,6 @@ public class MRUnitTest {
 
     @Test
     public void testMapReduce() throws IOException {
-
-        List<IntWritable> list = new ArrayList<>();
-        list.add(new IntWritable(1));
-        list.add(new IntWritable(1));
-
         mapReduceDriver.withInput(new LongWritable(1), new Text("cat cat dog"));
         mapReduceDriver.withOutput(new Text("cat"), new IntWritable(2));
         mapReduceDriver.withOutput(new Text("dog"), new IntWritable(1));
